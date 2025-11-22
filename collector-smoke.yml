@@ -1,0 +1,30 @@
+name: Collector smoke test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run collector (smoke run with timeout)
+        env:
+          TG_BOT_TOKEN: ''
+          TG_CHAT_ID: ''
+          FUTUNN_API_URL: 'https://news.futunn.com/news-site-api/main/get-flash-list?pageSize=5'
+          SENT_KEYS_FILE: '${{ github.workspace }}/futunn_sent_news_ids_ci.json'
+          MIN_INTERVAL_MS: '1000'
+          MAX_INTERVAL_MS: '2000'
+        run: |
+          timeout 1m node collector.js
