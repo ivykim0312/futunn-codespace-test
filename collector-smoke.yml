@@ -20,7 +20,7 @@ jobs:
 
       - name: Run collector (smoke run with timeout)
         env:
-          TG_BOT_TOKEN: '8329906080:AAG7y7nIBfq0EPIcxnJi1dRQNPJhObvREcw'
+          TG_BOT_TOKEN: '7983228284:AAHBJTvNzCatuwGOgcUqa_pFaCJSoFOxVws'
           TG_CHAT_ID: '8013998184'
           FUTUNN_API_URL: 'https://news.futunn.com/news-site-api/main/get-flash-list?pageSize=5'
           SENT_KEYS_FILE: '${{ github.workspace }}/futunn_sent_news_ids_ci.json'
